@@ -1,5 +1,5 @@
 ---------------------------------------------
---------BULK IMAGE DOWNLOADER TOOL 1.o-------
+--------BULK IMAGE DOWNLOADER TOOL 1.0-------
 ---------------------------------------------
 
 Hi! This tool exists to rapidly download a provided list of files given a list of URLs
