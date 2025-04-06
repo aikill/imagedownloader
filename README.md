@@ -15,7 +15,7 @@ This program is designed to be as simple and problem free as possible.
 It will not work with any submitted CSV files that do not comply with 
 the format that it was designed to use. As this is a beta tool still 
 I do not know what will happen if you dont follow these instructions. 
-So dont try it. But if you do please send me the results at xxxxx.xxxxxx@xxxxxxx.com
+So dont try it. But if you do please submit an issue
 
 When you launch the program you will see two buttons. Browse and download
 
@@ -43,7 +43,7 @@ As your files download a progress bar will fill up to indicate to you that the p
 occurring. Even with large volumes of files this program is very lean and will quickly download them.
 If you find yourself waiting a long time with no movement in the progress bar, close the program and try 
 again. If this issue persists and you are not having connection issues either with the server your files 
-are stored on, or on your local internet connection, please contact me at xxxxx.xxxxxx@xxxxxxx.com
+are stored on, or on your local internet connection, please submit an issue
 
 -----------------------------------------
 
