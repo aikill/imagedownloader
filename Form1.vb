@@ -105,7 +105,8 @@ Public Class form1
 
         'get a  count of rows in the datagrid
         Dim rowCount As Integer = DataGridView1.Rows.Count
-        Dim progressIter As Integer = 100 / rowCount - 1
+        downloadProgress.Maximum = rowCount
+        downloadProgress.Minimum = 0
 
         'reset the value of the progress bar to 0 
         downloadProgress.Value = 0
@@ -144,18 +145,18 @@ Public Class form1
                         File.WriteAllBytes(filePath, fileBytes)
 
                         ' MessageBox.Show($"File downloaded and saved as: {filePath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        downloadProgress.Value += progressIter
+                        downloadProgress.Increment(1)
                     Catch ex As Exception
                         'inform the user that a download has failed and insert the url into a textfile with a similar naming convention to the download folder
                         MessageBox.Show($"Failed to download file from {url}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         a.WriteLine("Failed to download file: " + url)
-                        downloadProgress.Value += progressIter
+                        downloadProgress.Increment(1)
                     End Try
                 End If
             Next
         End Using
         a.close()
-        downloadProgress.Value = 100
+        downloadProgress.Value = downloadProgress.Maximum
         MessageBox.Show("Download Process Complete!")
     End Sub
 
