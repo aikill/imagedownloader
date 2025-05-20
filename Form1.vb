@@ -18,6 +18,7 @@ Public Class form1
             ' Read the CSV file and store columns in lists
             Dim columns As List(Of List(Of String)) = ReadCSVFile(filePath)
 
+
             ' Display the data in the DataGridView
             DisplayDataInGridView(columns)
         Else
@@ -34,32 +35,36 @@ Public Class form1
         Dim columns As New List(Of List(Of String))()
 
         ' Use TextFieldParser to read the CSV file
-        Using parser As New TextFieldParser(filePath)
-            parser.TextFieldType = FieldType.Delimited
-            parser.SetDelimiters(",")
+        Try
+            Using parser As New TextFieldParser(filePath)
+                parser.TextFieldType = FieldType.Delimited
+                parser.SetDelimiters(",")
 
-            ' Read the header row and ignore it
-            If Not parser.EndOfData Then
-                parser.ReadFields()
-            End If
-
-            ' Read the rest of the file
-            While Not parser.EndOfData
-                Dim fields() As String = parser.ReadFields()
-
-                ' Ensure columns are initialized
-                If columns.Count = 0 Then
-                    For i As Integer = 0 To fields.Length - 1
-                        columns.Add(New List(Of String)())
-                    Next
+                ' Read the header row and ignore it
+                If Not parser.EndOfData Then
+                    parser.ReadFields()
                 End If
 
-                ' Add each field to its corresponding column
-                For i As Integer = 0 To fields.Length - 1
-                    columns(i).Add(fields(i))
-                Next
-            End While
-        End Using
+                ' Read the rest of the file
+                While Not parser.EndOfData
+                    Dim fields() As String = parser.ReadFields()
+
+                    ' Ensure columns are initialized
+                    If columns.Count = 0 Then
+                        For i As Integer = 0 To fields.Length - 1
+                            columns.Add(New List(Of String)())
+                        Next
+                    End If
+
+                    ' Add each field to its corresponding column
+                    For i As Integer = 0 To fields.Length - 1
+                        columns(i).Add(fields(i))
+                    Next
+                End While
+            End Using
+        Catch MalformedLineException As Exception
+            MessageBox.Show("This file is not using US localization, please export your file as a US style csv with a comma delimiter. This program is not localized for non-US formats currently")
+        End Try
 
         Return columns
     End Function
